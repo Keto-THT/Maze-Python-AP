@@ -1,3 +1,8 @@
+import pygame
+
+pygame.init()
+pygame.font.init()
+
 class Game: 
     def __init__(self, winning_cell, tile):
         self.font = pygame.font.Sysfont("impact", 35)
