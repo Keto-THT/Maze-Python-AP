@@ -8,7 +8,7 @@ class Game:
         self.font = pygame.font.Sysfont("impact", 35)
         self.message_color = pygame.Color("darkblue")
         self.winning_cell = winning_cell
-        self.tile = tile
+        self.tile = tile #largeur d'une cellule
 
 
     def win(self):

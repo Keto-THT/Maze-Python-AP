@@ -14,8 +14,8 @@ class Player :
         self.velX = 0
         self.velY = 0
         self.left_pressed = False
-        self.rigt_pressed = False
-        self.up_pressed_pressed = False
+        self.right_pressed = False
+        self.up_pressed = False
         self.down_pressed = False
         self.speed = 4
 
@@ -25,7 +25,31 @@ class Player :
                 return cell
     
     def check_move(self, tile, grid_cells):
+        current_cell_x, current_cell_y = self.x //tile, self.y //tile
+        current_cell = self.get_current_cell(current_cell_x, current_cell_y, grid_cells)
+        current_cell_abs_x, current_cell_abs_y = current_cell_x * tile, current_cell_y * tile
+        ##gérer les commandes - left, right, up, down 
+        
+        if self.left_pressed:
+            # s'il y a un mur à gauche, et que le joueur appuie sur left on annule le move
+            if current_cell.walls['left']:
+                if self.x <= current_cell_abs_x: 
+                    self.left_pressed = False
 
+        if self.right_pressed:
+            if current_cell.walls['right']:
+                if self.x >= current_cell_abs_x + tile - self.player_size: 
+                    self.right_pressed = False
+
+        if self.up_pressed:
+            if current_cell.walls['top']:
+                if self.y >= current_cell_abs_y + tile - self.player_size: 
+                    self.up_pressed = False
+        
+        if self.down_pressed:
+            if current_cell.walls['bottom']:
+                if self.y <= current_cell_abs_y: 
+                    self.down_pressed = False
 
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, self.rect)
