@@ -1,8 +1,6 @@
 class Maze:
     def __init__(self, representation : list = None, file_path : str = None):
         self.representation = representation
-        self.file_path = file_path
-
         if file_path:
             self.representation = self._load_from_file(file_path)
 
