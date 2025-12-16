@@ -7,13 +7,10 @@ authors = [
     { name = "Victor Duault", email = "victorduault@icloud.com" }
 ]
 requires-python = ">=3.12"
-dependencies = [
-    "pygame>=2.6.1",
-]
+dependencies = []
 
 [project.scripts]
-maze = "projet_maze.main:main"
-gen = "projet_maze.maze_gen:main"
+projet-maze = "projet_maze:main"
 
 [build-system]
 requires = ["uv_build>=0.9.5,<0.10.0"]
