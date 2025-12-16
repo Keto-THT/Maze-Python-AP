@@ -10,7 +10,8 @@ requires-python = ">=3.12"
 dependencies = []
 
 [project.scripts]
-projet-maze = "projet_maze:main"
+maze = "projet_maze.main:main"
+gen = "projet_maze.maze_gen:main"
 
 [build-system]
 requires = ["uv_build>=0.9.5,<0.10.0"]
