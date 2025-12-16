@@ -1,5 +1,5 @@
 class MazeSolve ():
-    def init__ (self, maze):
+    def _init__ (self, maze):
         self.maze = maze
         self.enter = self.find_enter(maze)
         self.exit = self.find_exit(maze)
@@ -23,13 +23,13 @@ class MazeSolve ():
         return chemin[exit]
 
 
-    def find_enter (maze):
+    def find_enter (self, self.maze):
         for i in range(len(maze[0])):
             if maze[0][i] == ' ':
                 return (0,i)
 
-    def find_exit (maze):
-        for i in range(len(maze[-1])):
+    def find_exit (self):
+        for i in range(len(self.maze[-1])):
             if maze[-1][i] == ' ':
-                return (len(maze)-1,i)
+                return (len(self.maze)-1,i)
             
