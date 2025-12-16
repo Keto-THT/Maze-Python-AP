@@ -1,4 +1,5 @@
 import pygame
+import time
 
 pygame.init()
 pygame.font.init()

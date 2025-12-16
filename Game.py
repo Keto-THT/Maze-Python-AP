@@ -1,5 +1,6 @@
 import pygame
 
+
 pygame.init()
 pygame.font.init()
 
@@ -14,7 +15,7 @@ class Game:
     def win(self):
         msg = self.font.render('Tu as gagné !', True, self.message_color)
     
-    def is_game_over(self, player):
+    def is_game_over(self, player, tile):
         winning_cell_x, winning_cell_y = self.winning_cell.x * tile, self.winning_cell.y * tile
         if player.x >= winning_cell_x and player.y >= winning_cell_y:
             return True
