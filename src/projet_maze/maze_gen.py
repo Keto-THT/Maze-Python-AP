@@ -1,4 +1,4 @@
-from .maze import Maze
+from maze import Maze
 import random
 
 class MazeGenerator:
