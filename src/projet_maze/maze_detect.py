@@ -7,39 +7,39 @@ class DetectZone :
         self.width = len(self.grid[0])
         self.zones = []
 
-    def is_empty(self, x, y): 
-        return self.grid[x][y] != '#'
+    def is_empty(self, i, j): 
+        return self.grid[i][j] == ' '
 
     def detect_zones(self):
         visited = [[False for i in range(self.width)] for j in range(self.height)]
-        for x in range(self.height): 
-            for y in range(self.width):
-                if self.is_empty(x, y) and not visited[x][y]:
+        for i in range(self.height): 
+            for j in range(self.width):
+                if self.is_empty(i, j) and not visited[i][j]:
                     zone = []
-                    self._explore_zone(x, y, visited, zone)
+                    self._explore_zone(i, j, visited, zone)
                     self.zones.append(zone)
                 
-    def _explore_zone(self, x, y, visited, zone): 
-        visited[x][y] = True
-        zone.append((x,y))
+    def _explore_zone(self, i, j, visited, zone): 
+        visited[i][j] = True
+        zone.append((i-1,j-1)) #Car dans l'exemple on ne compte pas les bords dans l'abcisse et l'ordonnée
         for dx, dy in [(-1,0), (1,0), (0, -1), (0,1)]:
-            i, j = x + dx, y + dy
-            if 0 <= i < self.height and 0 <= j < self.width : 
-                if self.is_empty(i,j) and not visited[i][j]:
-                    self._explore_zone(i,j,visited,zone)
+            n, m = i + dx, j + dy
+            if 0 <= n < self.height and 0 <= m < self.width : 
+                if self.is_empty(n,m) and not visited[n][m]:
+                    self._explore_zone(n,m,visited,zone)
     
     def print_zones(self):
         for index, zone in enumerate(self.zones):
-            print(f"Zone {index + 1} : {zone}")
+            print(f"Zone {index + 1}")
             for x, y in zone: 
                 print(f"({x}, {y})")
     
-    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    alphabet = 'abcdefghijklmopqrstuvwxyz'
 
     def label_zones(self):
         labeled_grid = [line.copy() for line in self.grid]
         for index, zone in enumerate(self.zones):
-            letter = alphabet[index % len(alphabet)]
+            letter = self.alphabet[index % len(self.alphabet)]
             for x, y in zone :
                 labeled_grid[x][y] = letter
         return labeled_grid
