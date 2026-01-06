@@ -4,7 +4,7 @@ from maze_solve import MazeSolve
 from projet_maze.const import CELL_SIZE, COLOR_BG, COLOR_WALL, COLOR_PATH, COLOR_START, COLOR_EXIT
 
 
-def draw_maze_clean(screen, maze, solution_path, start, end):
+def draw_maze_solution(screen, maze, solution_path, start, end):
 
     rows = len(maze)
     cols = len(maze[0])
