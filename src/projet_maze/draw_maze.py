@@ -2,14 +2,13 @@ import pygame
 import sys
 from maze_gen import MazeGenerator
 
+from .const import COLOR_WALL, COLOR_PATH, COLOR_START, COLOR_EXIT, CELL_SIZE
 
-cell_size = 20 
-
-#initialisation des couleurs
-color_wall = (0, 0, 0)       
-color_path = (255, 255, 255) 
-color_start = (0, 255, 0)    
-color_exit = (255, 0, 0)      
+cell_size = CELL_SIZE
+color_wall = COLOR_WALL
+color_path = COLOR_PATH
+color_start = COLOR_START
+color_exit = COLOR_EXIT
 
 class MazeDrawer:
     def __init__(self, maze, cell_size=20):
