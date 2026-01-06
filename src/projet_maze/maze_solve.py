@@ -1,5 +1,5 @@
 class MazeSolve:
-    def __init__(self, maze):  # Correction : double underscore
+    def __init__(self, maze): 
         self.maze = maze
         self.enter = self.find_enter()
         self.exit = self.find_exit()
