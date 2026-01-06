@@ -1,6 +1,6 @@
 import argparse
-from projet_maze.maze import Maze
-from projet_maze.detect_zone import DetectZone 
+from maze import Maze
+
 
 class DetectZone :
     def __init__(self, maze):
