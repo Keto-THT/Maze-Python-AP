@@ -1,3 +1,6 @@
+import argparse
+from projet_maze.maze import Maze
+from projet_maze.detect_zone import DetectZone 
 
 class DetectZone :
     def __init__(self, maze):
@@ -21,7 +24,7 @@ class DetectZone :
                 
     def _explore_zone(self, i, j, visited, zone): 
         visited[i][j] = True
-        zone.append((i-1,j-1)) #Car dans l'exemple on ne compte pas les bords dans l'abcisse et l'ordonnée
+        zone.append((i ,j )) 
         for dx, dy in [(-1,0), (1,0), (0, -1), (0,1)]:
             n, m = i + dx, j + dy
             if 0 <= n < self.height and 0 <= m < self.width : 
@@ -48,4 +51,20 @@ class DetectZone :
         labeled_grid = self.label_zones()
         for line in labeled_grid: 
             print(''.join(line))
-        
+
+def main():
+    parser = argparse.ArgumentParser(description="Détection des zones vides dans un labyrinthe")
+    parser.add_argument("file", type=str, help="Chemin vers le fichier .txt du labyrinthe")
+    args = parser.parse_args()
+
+    maze = Maze(file_path=args.file)
+    maze.display_maze()
+
+    detector = DetectZone(maze)
+    detector.detect_zones()
+    detector.print_zones()
+    detector.print_labeled_zones()
+
+if __name__ == "__main__":
+    main()
+
