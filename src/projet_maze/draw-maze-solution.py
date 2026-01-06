@@ -2,9 +2,14 @@ import pygame
 from maze_solve import MazeSolve 
 from projet_maze.const import CELL_SIZE, COLOR_BG, COLOR_WALL, COLOR_PATH, COLOR_START, COLOR_EXIT
 
-solution_path, start, end = MazeSolve.get_solution()
 
-def draw_maze_solution(screen, maze, solution_path, start, end):
+
+def draw_maze_solution(screen, maze):
+    solveur = MazeSolve(maze)
+    solution_path = solveur.maze_solve()
+    start = solveur.enter
+    end = solveur.exit
+
 
     rows = len(maze)
     cols = len(maze[0])
@@ -31,3 +36,5 @@ def draw_maze_solution(screen, maze, solution_path, start, end):
     if end:
         center = (end[1] * CELL_SIZE + CELL_SIZE//2, end[0] * CELL_SIZE + CELL_SIZE//2)
         pygame.draw.circle(screen, COLOR_EXIT, center, CELL_SIZE//3)
+
+
