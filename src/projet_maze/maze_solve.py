@@ -1,5 +1,5 @@
 class MazeSolve:
-    def __init__(self, maze):  # Correction : double underscore
+    def __init__(self, maze): 
         self.maze = maze
         self.enter = self.find_enter()
         self.exit = self.find_exit()
@@ -30,6 +30,37 @@ class MazeSolve:
             chemin.update(new_chemin)
 
         return chemin[exit]
+    
+    def maze_solve2(self):
+
+        frontiere = [self.enter]
+        visites = {self.enter: [self.enter]}
+        
+        while frontiere:
+            prochaine_frontiere = []
+            for case in frontiere:
+                if case == self.exit:
+                    return visites[case]
+
+                # Directions : Bas, Haut, Droite, Gauche
+                for dr, dc in [(1,0), (-1,0), (0,1), (0,-1)]:
+                    voisin = (case[0] + dr, case[1] + dc)
+                    
+                    # Vérification des limites et si c'est un mur
+                    if (0 <= voisin[0] < len(self.maze) and 
+                        0 <= voisin[1] < len(self.maze[0]) and
+                        self.maze[voisin[0]][voisin[1]] == ' ' and
+                        voisin not in visites):
+                        
+                        visites[voisin] = visites[case] + [voisin]
+                        prochaine_frontiere.append(voisin)
+            
+            frontiere = prochaine_frontiere
+
+            if prochaine_frontiere == []:
+                raise Exception("Pas de solution trouvée.")
+
+        return visites[self.exit]
 
     def find_enter(self):
         # Cherche l'entrée sur la première ligne
@@ -47,9 +78,9 @@ def load_maze(file_path):
     with open(file_path, 'r') as f:
         return [list(line.strip('\n')) for line in f.readlines()]
 
-def test_maze_solver():
+def maze_solver():
     mon_labyrinthe = load_maze('maze.txt')
     solveur = MazeSolve(mon_labyrinthe)
-    solution = solveur.maze_solve()
+    solution = solveur.maze_solve2()
     return("Chemin trouvé :", solution)
 
