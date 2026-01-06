@@ -11,8 +11,8 @@ from draw_zone import draw_zones
 from draw_maze_solution import draw_maze_solution
 
 from const import (
-    SCREEN_WIDTH, SCREEN_HEIGHT, CELL_SIZE,
-    COLOR_BG, COLOR_WALL, COLOR_PATH, COLOR_START, COLOR_EXIT,
+    SCREEN_WIDTH, SCREEN_HEIGHT, 
+    COLOR_BG,
     MAZE_ROWS, MAZE_COLS
 )
 
@@ -30,8 +30,7 @@ def main():
     raw_grid = maze_obj.get_representation()
     grid_clean = [line[:] for line in raw_grid]
     
-    start_pos = None
-    end_pos = None
+
     rows = len(grid_clean)
     cols = len(grid_clean[0])
 
@@ -39,10 +38,8 @@ def main():
     for r in range(rows):
         for c in range(cols):
             if grid_clean[r][c] == 'E':
-                start_pos = (r, c)
                 grid_clean[r][c] = ' ' # On transforme E en espace
             elif grid_clean[r][c] == 'S':
-                end_pos = (r, c)
                 grid_clean[r][c] = ' ' # On transforme S en espace
 
     # on recrée un objet Maze avec la grille nettoyée

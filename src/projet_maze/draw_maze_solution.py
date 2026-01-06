@@ -1,5 +1,4 @@
 import pygame
-
 from const import CELL_SIZE, COLOR_WALL, COLOR_PATH, COLOR_START, COLOR_EXIT
 
 def draw_maze_solution(screen, maze, solution_path=None):
