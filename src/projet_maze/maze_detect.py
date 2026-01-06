@@ -41,7 +41,7 @@ class DetectZone :
         for index, zone in enumerate(self.zones):
             letter = self.alphabet[index % len(self.alphabet)]
             for x, y in zone :
-                labeled_grid[x][y] = letter
+                labeled_grid[x+1][y+1] = letter
         return labeled_grid
     
     def print_labeled_zones(self):
