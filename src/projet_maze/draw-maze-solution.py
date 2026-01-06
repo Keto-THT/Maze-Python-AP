@@ -21,7 +21,7 @@ def draw_maze_clean(screen, maze, solution_path, start, end):
     if solution_path:
         for (r, c) in solution_path:
             rect = pygame.Rect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE)
-            # On dessine un carré légèrement plus petit pour l'esthétique
+  
             inner_rect = rect.inflate(-4, -4) 
             pygame.draw.rect(screen, COLOR_PATH, inner_rect)
 
